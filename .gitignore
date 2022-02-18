@@ -2,8 +2,14 @@
 .Rhistory
 .Rapp.history
 
+# Genotypic data
+*.num.txt
+*.hmp.txt
+*.hmp.txt.gz
+
 # Session Data files
 .RData
+__pycache__/*
 
 # User-specific files
 .Ruserdata
