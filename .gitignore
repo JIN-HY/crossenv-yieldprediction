@@ -37,3 +37,7 @@ __pycache__/*
 *.hmp.txt
 *.hmp.txt.gz
 *.num.txt
+
+# Slurm job log
+*slurm*out
+*slurm*err
