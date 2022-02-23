@@ -4,15 +4,20 @@ library(rrBLUP)
 library(grid)
 library(ggpubr)
 
-avgNE=read.csv("2020NE_avg.csv")
-avgMI=read.csv("2020MI_avg.csv")
+avgNE=read.csv("data/2020NE_avg.csv")
+avgMI=read.csv("data/2020MI_avg.csv")
 avg_merge=read.csv("2020merge_avg_narm.csv")
 
 x.idx = apply(matrix(colnames(avg_merge)), 1, grepl,pattern="NE")
 x.idx = c(TRUE,x.idx[-1])
 xy=avg_merge[,x.idx]
+eartraits <- c("EarsPerPlant_NEmean", "CobWeightGrams_NEmean", "HundredKernelMassGrams_NEmean", 
+               "EarLengthCM_NEmean", "EarWidthCM_NEmean", "EarFilledLengthCM_NEmean", 
+               "KernelRowNumber_NEmean", "KernelsPerRow_NEmean", "PercentFill_NEmean")
+xy <- xy[!colnames(xy) %in% eartraits]
+
 xy$Total.Weight.of.kernels..g._MImean = avg_merge$Total.Weight.of.kernels..g._MImean
-write.table(xy,"2020NEMI_RFfulltraining.csv",sep = ",",quote = F,row.names = F)
+write.table(xy,"data/2020NEMI_RFfulltraining.csv",sep = ",",quote = F,row.names = F)
 
 RFresult=data.frame(GenotypeID=xy$GenotypeID,Total.Weight.of.kernels..g._MI=y)
 # find nas
