@@ -224,9 +224,8 @@ rrblup_full = function(phe, i, snp_markers2){
 
 #do full rrblup
 full_train_result=avg_gp
-for (i in 2:(ncol(avg_gp)-1)) {
-  full_train_result[i] = rrblup_full(avg_gp, i, snp_markers2)
-}
+full_train_result$predicted_yield = rrblup_full(avg_gp, 2, snp_markers2)
+
 write.table(full_train_result,"data/rrblupresult/rrblup_full.csv",quote = F,row.names = F,sep = ",")
 # 
 # avg_yield <- avg_gp[,c("GenotypeID", "TotalGrainMassGrams_NEmean","Yield_MImean")]
